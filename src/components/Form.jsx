@@ -1,12 +1,13 @@
 
-import PropsTypes from 'prop-types'
 import { useInput } from '../hooks/useInput';
-function Form({onNewColor = f => f}) {
+import { useColors } from '../ColorProvider'
+function Form() {
+    const { addColor } = useColors();
     const [titleProps, resetTitle] = useInput("");
     const [hexColorProps, resetColor] = useInput("#000000");
     const submit = (e) => {
         e.preventDefault();
-        onNewColor(titleProps.value,hexColorProps.value);
+        addColor(titleProps.value,hexColorProps.value);
         resetTitle();
         resetColor();
     }
@@ -25,10 +26,6 @@ function Form({onNewColor = f => f}) {
             </form>
         </div>
     )
-}
-
-Form.propTypes = {
-    onNewColor: PropsTypes.func
 }
 
 export default Form

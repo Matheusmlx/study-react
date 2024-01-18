@@ -2,14 +2,16 @@
 import './Color.css'
 import PropsType from 'prop-types'
 import StartRatting from './StarRatting'
+import { useColors } from '../ColorProvider'
+function Color({ id, title, color, rating, ...props }) {
+    const { rateColor, removeColor } = useColors()
 
-function Color({ id, title, color, rating, onRemove = f => f, onRate= f => f,  ...props }) {
     return (
         <div className='color-container' {...props}>
-            <button onClick={() => onRemove(id)}>X</button>
+            <button onClick={() => removeColor(id)}>X</button>
             <h3>{ title }</h3>
             <div style={{ height:50, backgroundColor:color }}/>
-            <StartRatting selectedStars={rating} onRate={(rating) => onRate(id, rating)}/>            
+            <StartRatting selectedStars={rating} onRate={(rating) => rateColor(id, rating)}/>            
         </div>
     )
 }
@@ -20,7 +22,6 @@ Color.propTypes = {
     color: PropsType.string,
     rating: PropsType.number,
     onRemove: PropsType.func,
-    onRate: PropsType.func,
 }
 
 export default Color
