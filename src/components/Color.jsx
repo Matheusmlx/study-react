@@ -1,8 +1,9 @@
 
-import './Color.css'
+import React from 'react'
 import PropsType from 'prop-types'
 import StartRatting from './StarRatting'
 import { useColors } from '../ColorProvider'
+import './Color.css'
 function Color({ id, title, color, rating, ...props }) {
     const { rateColor, removeColor } = useColors()
 

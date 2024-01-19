@@ -1,8 +1,6 @@
 
+import React from 'react'
 import PropsType from 'prop-types'
-
-
-
 function Title(props) {
     
     return (
